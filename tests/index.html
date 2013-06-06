@@ -13,6 +13,8 @@
         <script type="text/javascript" src="../src/DatGrid/GridView.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/FullEditor.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Gridster.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/WidgetModel.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/Toolbox.js" ></script>
         <link rel="stylesheet" type="text/css" href="../src/DatGrid/dat-grid.css" />
         
         <style>
@@ -34,6 +36,10 @@
         
         <div class="gridster">
 
+        </div>
+        
+        <div id="toolBox">
+            
         </div>
         
         <script>
@@ -60,9 +66,23 @@
                 },200);
               */
                 
-                var myEditor = new DatGrid.FullEditor({
+                var myToolBox = new DatGrid.ToolBox({
+                    parent : "#toolBox"
+                });
+                
+                myToolBox.addModel(
+                        new DatGrid.WidgetModel({
+                            name: "blabla",
+                            width: 1,
+                            height: 2,
+                            
+                        })
+                );
+                
+                var myEditor  = new DatGrid.FullEditor({
                     
                     editorElm : ".gridster",
+                    //toolBox   : myToolBox,
                     cellDimensions : [100,100],
                     cellMargin : [10,10]
                     
@@ -70,6 +90,11 @@
                 
                 myEditor.addLayout();
                 
+                var a = $(myEditor);
+
+                a.on("doSomethingCool",function(){
+                    alert("lll");
+                });
 
             });
             

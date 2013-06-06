@@ -13,9 +13,12 @@ var DatGrid = DatGrid || {};
         this.type   = params.type || "empty";
         this.opacity= params.opacity || 1;
         
+        this.removable = params.removable || true;
+        
         this.configs= params.config || {};
         
-        this.DomElement = $("<li>");
+        this.DomElement = $("<li class='dat-grid-widget-body' >");
+        
         
         this.initElement();
 
@@ -23,6 +26,14 @@ var DatGrid = DatGrid || {};
     };
     
     widget.prototype.initElement=function(){
+        
+        // REMOVABLE
+        //
+        if(this.removable){
+            this.DomElement.addClass("widget-removable");
+        }
+        //
+        ///////////
         
         this.DomElement.addClass("widget_type-"+this.type);
         this.DomElement.css({opacity:this.opacity});

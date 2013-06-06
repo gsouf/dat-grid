@@ -19,6 +19,7 @@ var DatGrid = DatGrid || {};
         this.init();
 
         
+        
     };
     
     
@@ -56,6 +57,14 @@ var DatGrid = DatGrid || {};
             }
         });
         this.layouts.push(layout);
+        
+        $(layout).on("widgetAdded",function(e,widget){
+            console.log("TODO");
+        });
+        
+
+
+        
     };
 
     DatGrid.FullEditor=fullEditor;

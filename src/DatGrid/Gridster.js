@@ -4,6 +4,7 @@ var DatGrid = DatGrid || {};
     
     var gridster=function(params){
         
+        
         params=params || {};
         params.gridster=params.gridster || {};
         
@@ -36,11 +37,24 @@ var DatGrid = DatGrid || {};
         
         if( !(widget instanceof DatGrid.Widget) ){
             widget = new DatGrid.Widget(widget);
-            console.log(widget);
         }
         this.gridster.data('gridster').add_widget( widget.getElement(),widget.x,widget.y,widget.width,widget.height );
         
+        $(this).trigger("widgetAdded",widget);
+        
         return widget;
+    };
+    
+    
+    gridster.prototype.removeWidget = function (widget){
+        
+       
+        this.gridster.data('gridster').remove_widget( widget.getElement());
+        
+        $(this).trigger("removeWidget",[widget]);
+        
+        return widget;
+        
     };
 
     DatGrid.Gridster=gridster;

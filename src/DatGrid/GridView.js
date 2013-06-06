@@ -11,12 +11,12 @@ var DatGrid = DatGrid || {};
     
     var gridView=function(height,width){
         
-        this.cellWidth  = width  || 0;
-        this.cellHeight = height || 0;
+        this.cellWidth  = width  || 0; // width of the cells
+        this.cellHeight = height || 0; // height of the cells
         
-        this.DomElement = $("<div>");
-        this.DomElement.addClass("dat-grid-view-grid-helper");
-        this.parent      = null;
+        this.DomElement = $("<div>"); // Div into which we will draw the grid
+        this.DomElement.addClass("dat-grid-view-grid-helper"); // class for css (into dat-grid.css)
+        this.parent     = null;  // the element into which display the grid. The grid size will be adapted to this element. This element has to be positionned
     };
     
     gridView.prototype.drawTo = function(parent){
@@ -25,11 +25,14 @@ var DatGrid = DatGrid || {};
         
         var self=this;
         
-        this.parent.resize(function(){
-            // TODO : doesnt work
-            self.DomElement.css({ height:self.parent.height() });
-            self.refresh();
-        });
+        // IF SIZE HAS BEEN MODIFIED, THEN WE UPDATE THE GRID
+        setInterval(function(){
+            if(self.DomElement.height() !== self.parent.height()){
+            
+                self.DomElement.css({ height:self.parent.height() });
+                self.refresh();
+            }
+        },500);
         
         
         
@@ -42,8 +45,6 @@ var DatGrid = DatGrid || {};
         // GET THE NUMBER OF CELLS
         var numberX = this.parent.width()/this.cellWidth; 
         var numberY = this.parent.height()/this.cellHeight; 
-
-        console.log(this.parent.height());
 
         // SET THE NEW DIMENSIONS
         this.DomElement.css({
