@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title></title>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        
+        <script type="text/javascript" src="./jquery/jquery.min.js" ></script>
+        
+        <script type="text/javascript" src="./gridster/dist/jquery.gridster.with-extras.min.js" ></script>
+        <link rel="stylesheet" type="text/css" href="./gridster/dist/jquery.gridster.min.css" />
+        
+        <script type="text/javascript" src="../src/DatGrid/Widget.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/GridView.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/FullEditor.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/Gridster.js" ></script>
+        <link rel="stylesheet" type="text/css" href="../src/DatGrid/dat-grid.css" />
+        
+        <style>
+            .gridster ul{
+                list-style-type: none;
+            }
+            
+            .gridster li{
+                background: #DDD;
+            }
+            
+            .gridster{
+                width:720px;
+            }
+            
+        </style>
+    </head>
+    <body>
+        
+        <div class="gridster">
+
+        </div>
+        
+        <script>
+            
+            $(function(){ //DOM Ready
+             /*
+                var myGrid=new DatGrid.GridView(120,120);
+ 
+                $(".gridster ul").gridster({
+                    widget_margins: [10, 10],
+                    widget_base_dimensions: [100, 100],
+                    draggable : {
+                        stop:function(){
+                            setTimeout(function(){
+                                myGrid.refresh();
+                            },400);
+                        }
+                    }
+                });
+                
+                setTimeout(function(){
+                    myGrid.drawTo($(".gridster"));
+                    myGrid.refresh();
+                },200);
+              */
+                
+                var myEditor = new DatGrid.FullEditor({
+                    
+                    editorElm : ".gridster",
+                    cellDimensions : [100,100],
+                    cellMargin : [10,10]
+                    
+                });
+                
+                myEditor.addLayout();
+                
+
+            });
+            
+        </script>
+        
+        
+    </body>
+</html>
