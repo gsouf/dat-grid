@@ -8,6 +8,9 @@
         <script type="text/javascript" src="./jquery/jquery-ui-1.10.3.custom.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="./jquery/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
         
+        <script type="text/javascript" src="./jQuery-contextMenu/src/jquery.contextMenu.js" ></script>
+        <link rel="stylesheet" type="text/css" href="./jQuery-contextMenu/src/jquery.contextMenu.css" />
+        
         <script type="text/javascript" src="./gridster/dist/jquery.gridster.with-extras.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="./gridster/dist/jquery.gridster.min.css" />
         
@@ -52,6 +55,36 @@
         </div>
         
         <script>
+            
+            $.contextMenu({
+                // define which elements trigger this menu
+                selector: ".dat-grid-widget-body",
+                // define the elements of the menu
+                items: {
+                    configure : {name: "Configure", icon:"gear", callback: function(key, opt){
+                            
+                    }},
+                    sep       : "---------",
+                    addrow    : {name: "Add Row", icon:"add-row", callback: function(key, opt){
+                        opt.$trigger.data("dat-grid-widget").addRow();
+                        return false;
+                    }},
+                    remrow    : {name: "Remove Row",icon:"rem-row", callback: function(key, opt){
+                        opt.$trigger.data("dat-grid-widget").removeRow();
+                        return false;
+                    }},
+                    addcol    : {name: "Add Column",icon:"add-col", callback: function(key, opt){
+                        opt.$trigger.data("dat-grid-widget").addColumn();
+                        return false;
+                    }},
+                    remcol    : {name: "Remove Column",icon:"rem-col", callback: function(key, opt){
+                        opt.$trigger.data("dat-grid-widget").removeColumn();
+                        return false;
+                    }}
+                }
+                // there's more, have a look at the demos and docs...
+            });
+            
             
             $(function(){ //DOM Ready
              /*
@@ -117,6 +150,7 @@
                     
                 });
                 
+                myEditor.addLayout();
                 myEditor.addLayout();
                 
                 var a = $(myEditor);

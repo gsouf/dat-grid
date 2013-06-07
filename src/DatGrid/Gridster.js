@@ -16,10 +16,12 @@ var DatGrid = DatGrid || {};
         this.gridster=this.domElm.gridster(params.gridster);
         
         this.addWidget({
-            x:2,
+            x:4,
             y:2,
             width:2,
-            height:1
+            height:1,
+            widthLocked:false,
+            heightLocked:false,
         });
         
         this.addWidget({
@@ -31,19 +33,28 @@ var DatGrid = DatGrid || {};
         
         var self=this;
         
-        this.domElm.droppable({
-            accept: ".dat-grid-widget-model",
-            drop  : function(e,ui){
-                var model = $(ui.draggable).data("widget-model");
-                $(self).trigger("widgetModelDropped" , model ) ;
-            }
-        });
+        
         
         this.showListInInspector=false;
         this.hidden=false;
 
     };
     
+    gridster.prototype.setDroppable = function(isDroppable){
+        
+        if(isDroppable){
+            this.domElm.droppable({
+                accept: ".dat-grid-widget-model",
+                drop  : function(e,ui){
+                    var model = $(ui.draggable).data("widget-model");
+                    $(self).trigger("widgetModelDropped" , model ) ;
+                }
+            });
+        }else{
+            this.domElm.droppable('disable');
+        }
+        
+    };
     
     gridster.prototype.addWidget = function (widget){
         
@@ -53,6 +64,8 @@ var DatGrid = DatGrid || {};
 
         
         this.gridster.data('gridster').add_widget( widget.getElement(),widget.width,widget.height,widget.x,widget.y );
+        
+        widget.layout=this;
         
         $(this).trigger("widgetAdded",widget);
         

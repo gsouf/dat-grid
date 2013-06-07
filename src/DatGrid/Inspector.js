@@ -64,8 +64,18 @@ var DatGrid = DatGrid || {};
                     +"<ul></ul>"
                 +"</div>");
         
+        
             // LINK THE LAYOUT TO THE DOM DATA
             tmpLayoutRoot.data("dat-grid-layout",layout);
+            
+            // MAKE IT DROPPABLE FOR THE MODELS
+            tmpLayoutRoot.droppable({
+                accept: ".dat-grid-widget-model",
+                drop  : function(e,ui){
+                    var model = $(ui.draggable).data("widget-model");
+                    $($(this).data("dat-grid-layout")).trigger("widgetModelDropped" , model ) ;
+                }
+            });
         
             // SHOW THE LIST ?
             if(!showList){
@@ -94,6 +104,9 @@ var DatGrid = DatGrid || {};
                 var layoutElm = $(this).closest(".dat-grid-inspector-root-layout");
                 
                 var layout = layoutElm.data("dat-grid-layout");
+                
+                
+                
                 
                 layout.setHidden(!layout.hidden);
                 

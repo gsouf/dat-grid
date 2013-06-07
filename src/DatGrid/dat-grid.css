@@ -1,3 +1,10 @@
+
+/**************************
+
+    THE GRID VIEW
+
+***************************/
+
 .dat-grid-view-grid-helper{
     border-top  : 1px dashed #DDD;
     border-left : 1px dashed #DDD;
@@ -12,6 +19,37 @@
     float: left;
 }
 
+
+
+/**************************
+
+    THE FULL EDITOR
+
+***************************/
+
+.dat-grid-full-editor-layouts ul,.dat-grid-full-editor-layouts li{
+    margin:0;
+    padding: 0;
+}
+
+.dat-grid-full-editor-layouts{
+    position:relative;
+}
+/** place the layers in absolute then we see what it renders, dont forget to update the parent size with le js **/
+.dat-grid-full-editor-layouts>.dat-grid-full-editor-layout-wrapper{
+    position:absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right: 0;
+}
+
+
+/**************************
+
+    THE TOOLBOX
+
+***************************/
 
 
 .dat-grid-toolbox-maincontainer{
@@ -30,6 +68,9 @@
 .dat-grid-toolbox-maincontainer>li:hover{
     background: #EEE;
 }
+
+
+
 
 
 
@@ -75,4 +116,34 @@
     background:  #AAA;
     margin: 1px 1px 0 0;
     float:left;
+}
+
+
+
+
+
+/**************************
+
+   CUSTOM ICONS FOR MENU
+
+***************************/
+
+.context-menu-item.icon-gear{
+    background-image: url(./images/gear.png);
+}
+.context-menu-item.icon-add-row{
+    background-image: url(./images/table-insert-row.png);
+}
+.context-menu-item.icon-rem-row{
+    background-image: url(./images/table-delete-row.png);
+}
+.context-menu-item.icon-add-col{
+    background-image: url(./images/table-insert-column.png);
+}
+.context-menu-item.icon-rem-col{
+    background-image: url(./images/table-delete-column.png);
+}
+
+.context-menu-item{
+    display:block !important;
 }

@@ -1,6 +1,7 @@
 var DatGrid = DatGrid || {};
 
 
+
 (function(){ // EXTENDS WidgetModel
     
     var widget=function(params){
@@ -14,11 +15,16 @@ var DatGrid = DatGrid || {};
         
         this.removable = params.removable || true;
         
-        this.DomElement = $("<li class='dat-grid-widget-body' >");
+        this.layout = null;
+        
+        this.DomElement = $("<li class='dat-grid-widget-body' />");
         
         this.DomElement.data("dat-grid-widget",this);
         
         this.initElement();
+        
+
+        
    
     };
     
@@ -38,6 +44,77 @@ var DatGrid = DatGrid || {};
         this.DomElement.css({opacity:this.opacity});
         
     };
+    
+    widget.prototype.addColumn = function(number){
+
+        number = number || 1;
+        
+        if(this.widthLocked)
+            return false;
+        
+        if( this.maxWidth!==null && this.maxWidth < this.width+number ){
+            this.width=this.maxWidth;
+        }else{
+            this.width+=number;
+        }
+        
+        this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
+        
+        $(this).trigger("sizeChanger");
+        
+    };
+    
+    widget.prototype.removeColumn = function(number){
+
+        number = number || 1;
+        
+        if(this.widthLocked)
+            return false;
+        
+        if( this.minWidth > this.width-number ){
+            this.width=this.minWidth;
+        }else{
+            this.width-=number;
+        }
+        
+        this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
+        $(this).trigger("sizeChanger");
+    };
+    
+    widget.prototype.addRow = function(number){
+
+        number = number || 1;
+        
+        if(this.heightLocked)
+            return false;
+        
+        if( this.maxHeight!==null && this.maxHeight < this.height+number ){
+            this.height=this.maxHeight;
+        }else{
+            this.height+=number;
+        }
+        
+        this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
+        $(this).trigger("sizeChanger");
+    };
+    
+    widget.prototype.removeRow = function(number){
+
+        number = number || 1;
+        
+        if(this.heightLocked)
+            return false;
+        
+        if( this.minHeight > this.height-number ){
+            this.height=this.minHeight;
+        }else{
+            this.height-=number;
+        }
+        
+        this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
+        $(this).trigger("sizeChanger");
+    };
+    
     
     widget.prototype.getElement=function(){
         return this.DomElement;
