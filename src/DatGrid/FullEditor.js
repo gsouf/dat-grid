@@ -6,9 +6,10 @@ var DatGrid = DatGrid || {};
     var fullEditor=function(params){
         params=params || {};
         
-        this.toolBoxElm  = params.toolBox;
-        this.editorElm   = $(params.editorElm);
-        this.overviewElm = params.overview;
+        this.toolBoxElm   = params.toolBox;
+        this.editorElm    = $(params.editorElm);
+        this.inspectorElm = $(params.inspectorElm);
+        this.overviewElm  = params.overview;
         
         var tmpDim = params.cellDimensions || [0,0];
         
@@ -45,6 +46,24 @@ var DatGrid = DatGrid || {};
         //
         //
         //////////////////////////////////////////////
+        
+        
+        
+        
+        
+        
+        
+        
+        //////////////////////////////////////////////
+        //
+        // CONFIGURATION OF THE INSPECTOR AREA
+        //
+
+        this.inspector = new DatGrid.Inspector({parent:this.inspectorElm});
+
+        //
+        //
+        //////////////////////////////////////////////
     };
     
     
@@ -56,13 +75,19 @@ var DatGrid = DatGrid || {};
                 widget_margins: this.cellMargin
             }
         });
+        
         this.layouts.push(layout);
+        
+        this.inspector.addLayout(layout);
         
         $(layout).on("widgetAdded",function(e,widget){
             console.log("TODO");
         });
         
-
+        $(layout).on("widgetModelDropped",function(e,model){
+            e.target.addWidget(model);
+        });
+        
 
         
     };

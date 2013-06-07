@@ -5,17 +5,22 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         
         <script type="text/javascript" src="./jquery/jquery.min.js" ></script>
+        <script type="text/javascript" src="./jquery/jquery-ui-1.10.3.custom.min.js" ></script>
+        <link rel="stylesheet" type="text/css" href="./jquery/css/ui-lightness/jquery-ui-1.10.3.custom.min.css" />
         
         <script type="text/javascript" src="./gridster/dist/jquery.gridster.with-extras.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="./gridster/dist/jquery.gridster.min.css" />
         
-        <script type="text/javascript" src="../src/DatGrid/Widget.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/GridView.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/FullEditor.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Gridster.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/WidgetModel.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/Widget.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Toolbox.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/Inspector.js" ></script>
         <link rel="stylesheet" type="text/css" href="../src/DatGrid/dat-grid.css" />
+        
+        <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css" />
         
         <style>
             .gridster ul{
@@ -39,6 +44,10 @@
         </div>
         
         <div id="toolBox">
+            
+        </div>
+        
+        <div id="inspector">
             
         </div>
         
@@ -71,17 +80,37 @@
                 });
                 
                 myToolBox.addModel(
-                        new DatGrid.WidgetModel({
-                            name: "blabla",
-                            width: 1,
-                            height: 2,
-                            
-                        })
+                    new DatGrid.WidgetModel({
+                        name: "aa",
+                        width: 1,
+                        height: 2
+
+                    })
                 );
+                    
+                myToolBox.addModel(
+                    new DatGrid.WidgetModel({
+                        name: "bb",
+                        width: 3,
+                        height: 1
+                        
+                    })
+                );
+                    
+                myToolBox.addModel(
+                    new DatGrid.WidgetModel({
+                        name: "abc",
+                        width: 3,
+                        height: 2,
+                        type: "cool"
+                    })
+                );
+
                 
                 var myEditor  = new DatGrid.FullEditor({
                     
                     editorElm : ".gridster",
+                    inspectorElm : "#inspector",
                     //toolBox   : myToolBox,
                     cellDimensions : [100,100],
                     cellMargin : [10,10]
@@ -95,6 +124,10 @@
                 a.on("doSomethingCool",function(){
                     alert("lll");
                 });
+                
+                setTimeout(function(){
+                    myToolBox.filterByName("a");
+                },1000);
 
             });
             

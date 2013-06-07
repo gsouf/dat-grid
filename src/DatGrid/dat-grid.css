@@ -11,3 +11,68 @@
     border-bottom : 1px dashed #DDD;
     float: left;
 }
+
+
+
+.dat-grid-toolbox-maincontainer{
+    list-style-type: none;
+    margin:0;
+    padding:0;
+}
+
+.dat-grid-toolbox-maincontainer>li{
+    font-family:arial;
+    color: #444;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+.dat-grid-toolbox-maincontainer>li:hover{
+    background: #EEE;
+}
+
+
+
+/**************************
+
+    INSPECTOR
+
+***************************/
+
+.dat-grid-inspector-root-layout ul, .dat-grid-inspector-root-layout ul li{
+    margin:0;
+    padding: 0;
+}
+.dat-grid-inspector-root-layout>ul{
+    list-style-type: none;
+}
+
+.dat-grid-inspector-toggle-enabled,.dat-grid-inspector-toggle-disabled{
+    display:inline-block;
+    width: 16px;
+    height: 16px;
+}
+
+
+
+/**************************
+
+    WIDGETS REPRESENTATIONS
+
+***************************/
+
+.dat-grid-model-representation{
+    display: inline-block;
+    vertical-align: middle;
+}
+
+.widget-model-dimension-representation{
+    padding: 0 0 1px 1px;
+    background: white;
+}
+
+.widget-model-dimension-representation>div{
+    background:  #AAA;
+    margin: 1px 1px 0 0;
+    float:left;
+}

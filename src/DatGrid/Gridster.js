@@ -17,28 +17,42 @@ var DatGrid = DatGrid || {};
         
         this.addWidget({
             x:2,
-            y:1,
+            y:2,
             width:2,
             height:1
         });
         
         this.addWidget({
             x:1,
-            y:0,
+            y:1,
             width:1,
             height:1
         });
+        
+        var self=this;
+        
+        this.domElm.droppable({
+            accept: ".dat-grid-widget-model",
+            drop  : function(e,ui){
+                var model = $(ui.draggable).data("widget-model");
+                $(self).trigger("widgetModelDropped" , model ) ;
+            }
+        });
+        
+        this.showListInInspector=false;
+        this.hidden=false;
 
     };
     
     
     gridster.prototype.addWidget = function (widget){
         
-        
         if( !(widget instanceof DatGrid.Widget) ){
             widget = new DatGrid.Widget(widget);
         }
-        this.gridster.data('gridster').add_widget( widget.getElement(),widget.x,widget.y,widget.width,widget.height );
+
+        
+        this.gridster.data('gridster').add_widget( widget.getElement(),widget.width,widget.height,widget.x,widget.y );
         
         $(this).trigger("widgetAdded",widget);
         
@@ -56,6 +70,19 @@ var DatGrid = DatGrid || {};
         return widget;
         
     };
+    
+    gridster.prototype.setHidden = function(hidden){
+        this.hidden=hidden;
+        
+        $(this).trigger("displayChanged",hidden);
+        
+        if(hidden){
+            this.domElm.hide();
+        }else{
+            this.domElm.show();
+        }
+        
+    }
 
     DatGrid.Gridster=gridster;
     

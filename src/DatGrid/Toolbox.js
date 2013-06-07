@@ -10,7 +10,7 @@ var DatGrid = DatGrid || {};
         this.parent = $(params.parent);
         
         // create the list and add it to the parent
-        this.domElm = $("<ul>");
+        this.domElm = $("<ul class='dat-grid-toolbox-maincontainer'>");
         this.parent.append(this.domElm);
         
         this.models=[];
@@ -31,7 +31,6 @@ var DatGrid = DatGrid || {};
     };
     
     toolBox.prototype.filter = function(){
-        
         
         if(this.filterName === "")
             // if nothing to filter then we take the full model list
@@ -60,13 +59,24 @@ var DatGrid = DatGrid || {};
         
         
         for(var i=0 ; i < this.filteredList.length  ; i++ ){
-        console.log(this.filteredList.length);
             
             var model = this.filteredList[i];
             
-            this.domElm.append(
-                $("<li class='dat-grid-toolbox-item type-"+model.type+"'><i class='item-icone'></i> <span>"+model.name+"</span> </li>")
+            var tmpElm = $(
+                    "<li class='dat-grid-toolbox-item dat-grid-widget-model type-"+model.type+"'>"
+                        +"<i class='dat-grid-model-icone'></i> <span class='dat-grid-model-name'>"+model.name+"</span> <div class='dat-grid-model-representation'>  </div> "
+                    +"</li>"
             );
+            
+            tmpElm.data("widget-model",model);
+            
+            tmpElm.find(".dat-grid-model-representation").append(model.getDimensionRepresentation(2));
+            
+            tmpElm.draggable({
+                helper:'clone'
+            });
+            
+            this.domElm.append( tmpElm );
  
         }
     };

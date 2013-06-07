@@ -1,29 +1,28 @@
 var DatGrid = DatGrid || {};
 
 
-(function(){
+(function(){ // EXTENDS WidgetModel
     
     var widget=function(params){
         params=params || {};
         
-        this.x      = params.x || 0;
-        this.y      = params.y || 0;
-        this.width  = params.width || 0;
-        this.height = params.height || 0;
-        this.type   = params.type || "empty";
+        DatGrid.WidgetModel.apply(this,[params]);
+        
+        this.x      = params.x || 1;
+        this.y      = params.y || 1;
         this.opacity= params.opacity || 1;
         
         this.removable = params.removable || true;
         
-        this.configs= params.config || {};
-        
         this.DomElement = $("<li class='dat-grid-widget-body' >");
         
+        this.DomElement.data("dat-grid-widget",this);
         
         this.initElement();
-
-        
+   
     };
+    
+    widget.prototype = Object.create(DatGrid.WidgetModel.prototype);
     
     widget.prototype.initElement=function(){
         
