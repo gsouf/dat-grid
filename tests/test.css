@@ -1,0 +1,27 @@
+#toolBox{
+    width: 200px;
+    float:left;
+}
+
+.gridster{
+    float:left;
+    width:720px;
+    min-height: 240px;
+}
+
+.dat-grid-full-editor-layouts{
+    min-height: 240px;
+}
+
+#inspector{
+    float:right;
+    width:200px;
+}
+
+.gridster ul{
+    list-style-type: none;
+}
+
+.gridster li{
+    background: #DDD;
+}

@@ -115,6 +115,9 @@ var DatGrid = DatGrid || {};
         $(this).trigger("sizeChanger");
     };
     
+    widget.prototype.showConfig = function(){
+        new DatGrid.ConfigBox(this).show();
+    };
     
     widget.prototype.getElement=function(){
         return this.DomElement;

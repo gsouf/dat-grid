@@ -15,24 +15,11 @@ var DatGrid = DatGrid || {};
         
         this.gridster=this.domElm.gridster(params.gridster);
         
-        this.addWidget({
-            x:4,
-            y:2,
-            width:2,
-            height:1,
-            widthLocked:false,
-            heightLocked:false,
-        });
         
-        this.addWidget({
-            x:1,
-            y:1,
-            width:1,
-            height:1
-        });
         
         var self=this;
         
+       
         
         
         this.showListInInspector=false;
@@ -40,21 +27,7 @@ var DatGrid = DatGrid || {};
 
     };
     
-    gridster.prototype.setDroppable = function(isDroppable){
-        
-        if(isDroppable){
-            this.domElm.droppable({
-                accept: ".dat-grid-widget-model",
-                drop  : function(e,ui){
-                    var model = $(ui.draggable).data("widget-model");
-                    $(self).trigger("widgetModelDropped" , model ) ;
-                }
-            });
-        }else{
-            this.domElm.droppable('disable');
-        }
-        
-    };
+
     
     gridster.prototype.addWidget = function (widget){
         

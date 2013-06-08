@@ -11,6 +11,7 @@
     position: absolute;
     top: 0;
     left: 0;
+    background: #F4F4F4;
 }
 
 .dat-grid-view-grid-helper>div{
@@ -146,4 +147,37 @@
 
 .context-menu-item{
     display:block !important;
+}
+
+
+
+/**************************
+
+   CONFIGBOX
+
+***************************/
+
+.dat-grid-widget-configbox-wrapper{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    
+}
+
+.dat-grid-widget-configbox-background{
+    position: absolute;
+    top:0;
+    left:0;
+    bottom:0;
+    right:0;
+    background:#222;
+    opacity: 0.2;
+}
+
+.dat-grid-widget-configbox-area{
+    width: 600px;
+    margin: auto;
+    background: #DDD;
 }

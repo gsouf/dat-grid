@@ -57,6 +57,22 @@ var DatGrid = DatGrid || {};
             self.layoutsElm.height(greatest);
         },400);
         
+        
+        var self = this;
+        
+        // SET IT DROPPABLE FOR WIDGETS
+        this.layoutsElm.droppable({
+            accept: ".dat-grid-widget-model",
+            drop  : function(e,ui){
+                var model = $(ui.draggable).data("widget-model");
+                var topLayer = self.getTopLayer();
+                                
+                if(topLayer !== false)
+                    topLayer.addWidget(model);
+                
+            }
+        });
+        
         //
         //
         //////////////////////////////////////////////
@@ -72,6 +88,47 @@ var DatGrid = DatGrid || {};
         //
 
         this.inspector = new DatGrid.Inspector({parent:this.inspectorElm});
+
+        //
+        //
+        //////////////////////////////////////////////
+        
+        
+        
+        //////////////////////////////////////////////
+        //
+        // CONFIGURATION OF THE CONTEXT MENU
+        //
+
+        $.contextMenu({
+            // define which elements trigger this menu
+            selector: ".dat-grid-widget-body",
+            // define the elements of the menu
+            items: {
+                configure : {name: "Configure", icon:"gear", callback: function(key, opt){
+                     opt.$trigger.data("dat-grid-widget").showConfig();
+                }},
+                sep       : "---------",
+                addrow    : {name: "Add Row", icon:"add-row", callback: function(key, opt){
+                    opt.$trigger.data("dat-grid-widget").addRow();
+                    return false;
+                }},
+                remrow    : {name: "Remove Row",icon:"rem-row", callback: function(key, opt){
+                    opt.$trigger.data("dat-grid-widget").removeRow();
+                    return false;
+                }},
+                addcol    : {name: "Add Column",icon:"add-col", callback: function(key, opt){
+                    opt.$trigger.data("dat-grid-widget").addColumn();
+                    return false;
+                }},
+                remcol    : {name: "Remove Column",icon:"rem-col", callback: function(key, opt){
+                    opt.$trigger.data("dat-grid-widget").removeColumn();
+                    return false;
+                }}
+            }
+            // there's more, have a look at the demos and docs...
+        });
+            
 
         //
         //
@@ -94,10 +151,7 @@ var DatGrid = DatGrid || {};
         
         var self=this;
         
-        // WHEN VISIBILITY CHANGES THEN WE HAVE TO CHECK WHICH LAYOUT IS ON THE TOP AND SET IT DROPPABLE WHILE WE ARE DISABLING THE OTHERS FOR DROP
-        $(layout).on("displayChanged",function(e){
-            self.changeDroppableLayout();
-        });
+
         
         this.layouts.push(layout);
         
@@ -106,34 +160,27 @@ var DatGrid = DatGrid || {};
         $(layout).on("widgetAdded",function(e,widget){
             console.log("TODO");
         });
-        
-        $(layout).on("widgetModelDropped",function(e,model){
-            e.target.addWidget(model);
-        });
-        
-        this.changeDroppableLayout();
-        
+                
     };
     
     /**
      *  WE LOOK FOR THE FIRST DISPLAYED LAYER ON THE STACK
      *  THEN WE SET IT DROPPABLE AND DISABLE THE DROP FOR ALL OTHERS
      */
-    fullEditor.prototype.changeDroppableLayout = function(){
+    fullEditor.prototype.getTopLayer = function(){
         
-        var found = false;
+ 
         
         for( var i = this.layouts.length-1 ; i>=0 ; i--){
             
-            if(found || this.layouts[i].hidden == true ){
-                this.layouts[i].setDroppable(false);
-            }else{
-                found = true;
-                this.layouts[i].setDroppable(true);
-                console.log(this.layouts[i]);
-            }
+            console.log(this.layouts[i].hidden);
+            
+            if(this.layouts[i].hidden == false )
+                return this.layouts[i];
             
         }
+        
+        return false;
     };
 
     DatGrid.FullEditor=fullEditor;

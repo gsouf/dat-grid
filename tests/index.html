@@ -21,34 +21,26 @@
         <script type="text/javascript" src="../src/DatGrid/Widget.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Toolbox.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Inspector.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/ConfigBox.js" ></script>
         <link rel="stylesheet" type="text/css" href="../src/DatGrid/dat-grid.css" />
         
         <link rel="stylesheet" href="./font-awesome/css/font-awesome.min.css" />
         
-        <style>
-            .gridster ul{
-                list-style-type: none;
-            }
-            
-            .gridster li{
-                background: #DDD;
-            }
-            
-            .gridster{
-                width:720px;
-            }
-            
-        </style>
+        <link rel="stylesheet" href="./test.css" />
+
     </head>
     <body>
+        
+        
+        <div id="toolBox">
+            
+        </div>
         
         <div class="gridster">
 
         </div>
         
-        <div id="toolBox">
-            
-        </div>
+        
         
         <div id="inspector">
             
@@ -56,34 +48,6 @@
         
         <script>
             
-            $.contextMenu({
-                // define which elements trigger this menu
-                selector: ".dat-grid-widget-body",
-                // define the elements of the menu
-                items: {
-                    configure : {name: "Configure", icon:"gear", callback: function(key, opt){
-                            
-                    }},
-                    sep       : "---------",
-                    addrow    : {name: "Add Row", icon:"add-row", callback: function(key, opt){
-                        opt.$trigger.data("dat-grid-widget").addRow();
-                        return false;
-                    }},
-                    remrow    : {name: "Remove Row",icon:"rem-row", callback: function(key, opt){
-                        opt.$trigger.data("dat-grid-widget").removeRow();
-                        return false;
-                    }},
-                    addcol    : {name: "Add Column",icon:"add-col", callback: function(key, opt){
-                        opt.$trigger.data("dat-grid-widget").addColumn();
-                        return false;
-                    }},
-                    remcol    : {name: "Remove Column",icon:"rem-col", callback: function(key, opt){
-                        opt.$trigger.data("dat-grid-widget").removeColumn();
-                        return false;
-                    }}
-                }
-                // there's more, have a look at the demos and docs...
-            });
             
             
             $(function(){ //DOM Ready
@@ -152,16 +116,8 @@
                 
                 myEditor.addLayout();
                 myEditor.addLayout();
-                
-                var a = $(myEditor);
 
-                a.on("doSomethingCool",function(){
-                    alert("lll");
-                });
                 
-                setTimeout(function(){
-                    myToolBox.filterByName("a");
-                },1000);
 
             });
             

@@ -43,7 +43,7 @@ var DatGrid = DatGrid || {};
         $(this.domElm).empty();
         
         // FOREACH LAYOUT WE CREATE A LIST
-        for(var i=0 ; i < this.layouts.length  ; i++ ){
+        for(var i=this.layouts.length - 1 ; i >= 0   ; i-- ){
             
             var layout=this.layouts[i];
             
@@ -72,8 +72,9 @@ var DatGrid = DatGrid || {};
             tmpLayoutRoot.droppable({
                 accept: ".dat-grid-widget-model",
                 drop  : function(e,ui){
+                    
                     var model = $(ui.draggable).data("widget-model");
-                    $($(this).data("dat-grid-layout")).trigger("widgetModelDropped" , model ) ;
+                    $(this).data("dat-grid-layout").addWidget(model); ;
                 }
             });
         
@@ -146,14 +147,14 @@ var DatGrid = DatGrid || {};
                 $(tmpElm).hover(
                     function(){
                         var widget=$(this).data("widget");
-                        widget.beforeHoverBorder=widget.DomElement.css('border');
+                       // widget.beforeHoverBorder=widget.DomElement.css('border');
                         widget.DomElement.css({
-                            border: "2px solid red"
+                            outline: "2px solid red"
                         });
                     },
                     function(){
                         var widget=$(this).data("widget");
-                        widget.DomElement.css('border',widget.beforeHoverBorder);
+                        widget.DomElement.css('outline',0);
                     }
                 );
             }
