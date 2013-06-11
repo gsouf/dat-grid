@@ -3,13 +3,7 @@ var DatGrid = DatGrid || {};
 (function(){
     
     var configBox=function(widget){
-        
-
-        
         this.widget = widget;
-
-        console.log(widget);
-
     };
     
     

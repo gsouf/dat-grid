@@ -169,18 +169,26 @@ var DatGrid = DatGrid || {};
      */
     fullEditor.prototype.getTopLayer = function(){
         
- 
-        
         for( var i = this.layouts.length-1 ; i>=0 ; i--){
-            
-            console.log(this.layouts[i].hidden);
-            
+                        
             if(this.layouts[i].hidden == false )
                 return this.layouts[i];
             
         }
         
         return false;
+    };
+    
+    fullEditor.prototype.serialize = function(){
+        
+        var layouts = [];
+        
+        for(var i = 0 ; i < this.layouts.length ; i++){
+           layouts.push(this.layouts[i].serialize());
+        }
+        
+        return layouts;
+        
     };
 
     DatGrid.FullEditor=fullEditor;

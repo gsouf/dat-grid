@@ -27,10 +27,13 @@ var DatGrid = DatGrid || {};
         
         var viewData = new Array();
         
-        $(this.fields).each(function(k,v){
-            viewData[k]=widget.fields[k].value;
-        });
+        console.log(widget.configs);
         
+        for(k in this.fields){
+            var config= widget.configs[k] || {};
+            var value = config.value;
+            viewData[k]=value || "";
+        };
         return this.viewGetter(viewData,widget);
     };
     

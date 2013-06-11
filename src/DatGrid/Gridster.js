@@ -13,14 +13,22 @@ var DatGrid = DatGrid || {};
         this.domElm = $("<ul>");
         this.parent.append(this.domElm);
         
+        params.gridster.serialize_params=function($elm,coord){
+            var widget = $elm.data("dat-grid-widget");
+            return {
+                x : coord.col,
+                y : coord.row,
+                width : coord.size_x,
+                height: coord.size_y,
+                type  : widget.type,
+            };
+        };
+        
         this.gridster=this.domElm.gridster(params.gridster);
         
         
         
         var self=this;
-        
-       
-        
         
         this.showListInInspector=false;
         this.hidden=false;
@@ -68,7 +76,13 @@ var DatGrid = DatGrid || {};
             this.domElm.show();
         }
         
-    }
+    };
+    
+    gridster.prototype.serialize = function (){
+        
+        return this.gridster.data('gridster').serialize();
+        
+    };
 
     DatGrid.Gridster=gridster;
     

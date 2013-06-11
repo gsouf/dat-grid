@@ -11,6 +11,8 @@
         <script type="text/javascript" src="./jQuery-contextMenu/src/jquery.contextMenu.js" ></script>
         <link rel="stylesheet" type="text/css" href="./jQuery-contextMenu/src/jquery.contextMenu.css" />
         
+        <link rel="stylesheet" type="text/css" href="./batch/css/batch-icons.css" />
+        
         <script type="text/javascript" src="./gridster/dist/jquery.gridster.with-extras.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="./gridster/dist/jquery.gridster.min.css" />
         
@@ -33,6 +35,10 @@
 
     </head>
     <body>
+        
+        <input id="searchInToolBox" type="text" />
+        
+        <a id='saver' > Save </a>
         
         
         <div id="toolBox">
@@ -75,24 +81,23 @@
                 },200);
               */
              
+                
+                DatGrid.fieldTypesLoadPath("./field-types");
+                DatGrid.loadDefaultFieldTypes();
              
                 DatGrid.registerWidgetType("cool",{
                     fields:{
                         wawa : { type :"text" },
                         wowo : { 
-                            type : new DatGrid.FieldType({
-                                valueGetter : function(){
-
-                                },
-                                viewGetter : function(value,spec){
-                                    return "aaa <input type=checkbox />";
-                                }
-                            })
+                            type : "checkbox",
+                            options: {
+                                name : "blah"
+                            }
                         },
                         wewe : { type : "testtype" , options : {max : 6} }
                     },
                     viewGetter:function(fields){
-                        return "<p>"+fields.wawa.value+"</p>";
+                        return "<div>"+fields.wawa+"</div>";
                     }
                     
                 });
@@ -105,6 +110,12 @@
                         return "this is a fake input with max : <b>"+options.max+"</b> and with value : <b>"+value+"</b>";
                     }
                 });
+                
+                
+                
+                
+                
+                
              
                 var myToolBox = new DatGrid.ToolBox({
                     parent : "#toolBox"
@@ -133,10 +144,12 @@
                         name: "abc",
                         width: 3,
                         height: 2,
-                        type: "cool"
+                        type: "cool",
+                        iconCls: "batchicon-at"
                     })
                 );
 
+                myToolBox.attacheFilterField("#searchInToolBox");
                 
                 var myEditor  = new DatGrid.FullEditor({
                     
@@ -151,11 +164,13 @@
                 myEditor.addLayout();
                 myEditor.addLayout();
 
+                $('#saver').click(function(){console.log(myEditor.serialize());});
                 
 
             });
             
         </script>
+        
         
         
     </body>

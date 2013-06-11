@@ -130,7 +130,6 @@ var DatGrid = DatGrid || {};
         var c = new DatGrid.ConfigBox(this);
         c.show();
         $(c).on("saved",function(){
-            alert("ll");
             self.refreshView();
         });
     };

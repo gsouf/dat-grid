@@ -64,7 +64,7 @@ var DatGrid = DatGrid || {};
             
             var tmpElm = $(
                     "<li class='dat-grid-toolbox-item dat-grid-widget-model type-"+model.type+"'>"
-                        +"<i class='dat-grid-model-icone'></i> <span class='dat-grid-model-name'>"+model.name+"</span> <div class='dat-grid-model-representation'>  </div> "
+                        +"<a class='dat-grid-toolbox-model-icon "+(model.iconCls)+"'></a> <span class='dat-grid-model-name'>"+model.name+"</span> <div class='dat-grid-model-representation'>  </div> "
                     +"</li>"
             );
             
@@ -81,6 +81,16 @@ var DatGrid = DatGrid || {};
         }
     };
     
+    toolBox.prototype.attacheFilterField = function (selector){
+        var self = this;
+        $(selector).keyup(function(){
+            self.filterByName(  $.trim($(this).val())  );
+        });
+        
+        $(selector).change(function(){
+            self.filterByName(  $.trim($(this).val())  );
+        });
+    };
     
     
     

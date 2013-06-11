@@ -20,7 +20,9 @@ var DatGrid = DatGrid || {};
         this.minHeight = params.minHeight || 1;
         this.maxHeight = params.maxHeight || null;
         this.heightLocked =  params.heightLocked !== undefined ? params.heightLocked : true;
-        this.type   = params.type || "empty";
+        this.type      = params.type || "empty";
+        
+        this.iconCls   = params.iconCls || "";
         
         this.removable = params.removable || true;
         

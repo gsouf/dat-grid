@@ -71,6 +71,12 @@
     background: #EEE;
 }
 
+/* icons */
+.dat-grid-toolbox-model-icon{
+    display : inline-block;
+    width: 16px;
+    height: 16px;
+}
 
 
 
