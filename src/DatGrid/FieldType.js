@@ -10,18 +10,18 @@ var DatGrid = DatGrid || {};
          *  getValue        -   returns the config value
          *  view            -   return the element to be appended to the config box
          */
-        this.getValue   = params.getValue;
+        this.valueGetter   = params.valueGetter;
         
-        this.view  = params.view
-;        
+        this.viewGetter  = params.viewGetter;        
     };
 
     
-    /**
-     * This method returns a node element that represents the dimensions of the model (drawn with squares)
-     */
-    fieldType.prototype.getDimensionRepresentation = function (size){
-
+    fieldType.prototype.getView = function (value,options){
+        return this.viewGetter(value,options);
+    };
+    
+    fieldType.prototype.getValue = function (element){
+        return this.valueGetter(element);
     };
     
 

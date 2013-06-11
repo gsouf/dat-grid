@@ -24,7 +24,12 @@ var DatGrid = DatGrid || {};
         
         this.removable = params.removable || true;
         
-        this.configs= params.config || {};
+        /*
+         * object with the fieldname of the widget type as the key.
+         * Each subobject takes the following keys :
+         *      - value (value of the config field)
+         */
+        this.configs= params.config || [];
         
     };
 
@@ -52,6 +57,12 @@ var DatGrid = DatGrid || {};
         
         return r;
 
+    };
+    
+    widgetModel.prototype.getWidgetType=function(){
+
+        return DatGrid.getWidgetType(this.type);
+        
     };
     
 

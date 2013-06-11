@@ -14,9 +14,12 @@
         <script type="text/javascript" src="./gridster/dist/jquery.gridster.with-extras.min.js" ></script>
         <link rel="stylesheet" type="text/css" href="./gridster/dist/jquery.gridster.min.css" />
         
+        <script type="text/javascript" src="../src/DatGrid/DatGrid.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/GridView.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/FullEditor.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Gridster.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/FieldType.js" ></script>
+        <script type="text/javascript" src="../src/DatGrid/WidgetType.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/WidgetModel.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Widget.js" ></script>
         <script type="text/javascript" src="../src/DatGrid/Toolbox.js" ></script>
@@ -50,7 +53,7 @@
             
             
             
-            $(function(){ //DOM Ready
+            $(function(){
              /*
                 var myGrid=new DatGrid.GridView(120,120);
  
@@ -71,7 +74,38 @@
                     myGrid.refresh();
                 },200);
               */
+             
+             
+                DatGrid.registerWidgetType("cool",{
+                    fields:{
+                        wawa : { type :"text" },
+                        wowo : { 
+                            type : new DatGrid.FieldType({
+                                valueGetter : function(){
+
+                                },
+                                viewGetter : function(value,spec){
+                                    return "aaa <input type=checkbox />";
+                                }
+                            })
+                        },
+                        wewe : { type : "testtype" , options : {max : 6} }
+                    },
+                    viewGetter:function(fields){
+                        return "<p>"+fields.wawa.value+"</p>";
+                    }
+                    
+                });
                 
+                DatGrid.registerFieldType("testtype",{
+                    valueGetter : function(){
+                        
+                    },
+                    viewGetter : function(value,options){
+                        return "this is a fake input with max : <b>"+options.max+"</b> and with value : <b>"+value+"</b>";
+                    }
+                });
+             
                 var myToolBox = new DatGrid.ToolBox({
                     parent : "#toolBox"
                 });

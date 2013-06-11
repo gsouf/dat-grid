@@ -45,6 +45,16 @@ var DatGrid = DatGrid || {};
         
     };
     
+    widget.prototype.refreshView=function(){
+      
+        this.DomElement.empty();
+        this.DomElement.append(this.getWidgetType().getView(this));
+        
+    };
+    
+    
+    
+    
     widget.prototype.addColumn = function(number){
 
         number = number || 1;
@@ -60,7 +70,7 @@ var DatGrid = DatGrid || {};
         
         this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
         
-        $(this).trigger("sizeChanger");
+        $(this).trigger("sizeChanged");
         
     };
     
@@ -78,7 +88,7 @@ var DatGrid = DatGrid || {};
         }
         
         this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
-        $(this).trigger("sizeChanger");
+        $(this).trigger("sizeChanged");
     };
     
     widget.prototype.addRow = function(number){
@@ -95,7 +105,7 @@ var DatGrid = DatGrid || {};
         }
         
         this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
-        $(this).trigger("sizeChanger");
+        $(this).trigger("sizeChanged");
     };
     
     widget.prototype.removeRow = function(number){
@@ -112,11 +122,17 @@ var DatGrid = DatGrid || {};
         }
         
         this.layout.gridster.data('gridster').resize_widget(this.DomElement,this.width,this.height);
-        $(this).trigger("sizeChanger");
+        $(this).trigger("sizeChanged");
     };
     
     widget.prototype.showConfig = function(){
-        new DatGrid.ConfigBox(this).show();
+        var self=this;
+        var c = new DatGrid.ConfigBox(this);
+        c.show();
+        $(c).on("saved",function(){
+            alert("ll");
+            self.refreshView();
+        });
     };
     
     widget.prototype.getElement=function(){

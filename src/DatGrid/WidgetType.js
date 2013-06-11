@@ -6,14 +6,16 @@ var DatGrid = DatGrid || {};
     var widgetType=function(params){
         params=params || {};
         
-        /**
-         * Field is made of :
-         *  name        -   name of the field
-         *  type        -   type of the field -> registered by DatGrid.registerFieldType()
+        
+        
+        /*
+         * object with the name of the field type as the key.
+         * Each subobject takes the following keys :
+         *   - type   :   type of the field -> registered by DatGrid.registerFieldType()
          */
         this.fields   = params.fields;
         
-        this.getHtml  = params.getHtml;
+        this.viewGetter  = params.viewGetter;
         
     };
 
@@ -21,8 +23,15 @@ var DatGrid = DatGrid || {};
     /**
      * This method returns a node element that represents the dimensions of the model (drawn with squares)
      */
-    widgetType.prototype.getDimensionRepresentation = function (size){
-
+    widgetType.prototype.getView = function (widget){
+        
+        var viewData = new Array();
+        
+        $(this.fields).each(function(k,v){
+            viewData[k]=widget.fields[k].value;
+        });
+        
+        return this.viewGetter(viewData,widget);
     };
     
 
