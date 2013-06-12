@@ -4,7 +4,6 @@ var DatGrid = DatGrid || {};
     
     var gridster=function(params){
         
-        
         params=params || {};
         params.gridster=params.gridster || {};
         
@@ -26,13 +25,8 @@ var DatGrid = DatGrid || {};
         
         this.gridster=this.domElm.gridster(params.gridster);
         
-        
-        
-        var self=this;
-        
         this.showListInInspector=false;
         this.hidden=false;
-
     };
     
 
@@ -56,7 +50,6 @@ var DatGrid = DatGrid || {};
     
     gridster.prototype.removeWidget = function (widget){
         
-       
         this.gridster.data('gridster').remove_widget( widget.getElement());
         
         $(this).trigger("removeWidget",[widget]);
