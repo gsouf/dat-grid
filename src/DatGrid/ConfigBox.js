@@ -88,6 +88,11 @@ var DatGrid = DatGrid || {};
                 // get the html
                 var fieldElm = fieldType.getView(configField.value || "", widgetType.fields[k].options || {});
                 
+                
+                // set a label if possible
+                if(widgetType.fields[k].label !== undefined)
+                    $("<li  class = 'dat-grid-widget-configbox-field-label' >"+widgetType.fields[k].label+"</li>" ).appendTo(fieldsArea);
+                
                 // append it to the list
                 var fieldItem = $("<li dat-grid-name='"+k+"' class = 'dat-grid-widget-configbox-field' />" );
                 fieldItem.append(fieldElm).appendTo(fieldsArea);

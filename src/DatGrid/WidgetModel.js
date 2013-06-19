@@ -16,7 +16,7 @@ var DatGrid = DatGrid || {};
         this.height = params.height || 1;
         this.widthLocked  = params.widthLocked !== undefined ? params.widthLocked : true;
         this.minWidth  = params.minWidth || 1;
-        this.maxWidth  = params.maxWidth || 4;
+        this.maxWidth  = params.maxWidth || 100;
         this.minHeight = params.minHeight || 1;
         this.maxHeight = params.maxHeight || null;
         this.heightLocked =  params.heightLocked !== undefined ? params.heightLocked : true;

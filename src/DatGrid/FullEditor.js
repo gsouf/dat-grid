@@ -145,7 +145,10 @@ var DatGrid = DatGrid || {};
             parent: container,
             gridster: {
                 widget_base_dimensions: [this.cellWidth,this.cellHeight],
-                widget_margins: this.cellMargin
+                widget_margins: this.cellMargin,
+                draggable: {
+                    items: ".gs_w"
+                }
             }
         });
         
