@@ -71,7 +71,7 @@ $(function(){
     myToolBox.addModel(
         new DatGrid.WidgetModel({
             name: "Slider",
-            width: 6,
+            width: 7,
             height: 1,
             type: "slider",
             iconCls: "batchicon-windows",
@@ -84,8 +84,8 @@ $(function(){
     var myEditor  = new DatGrid.FullEditor({
         editorElm : ".gridster",
         inspectorElm : "#inspector",
-        cellDimensions : [50,50],
-        cellMargin : [5,5]
+        cellDimensions : [40,40],
+        cellMargin : [10,10]
     });
 
     myEditor.addLayout();

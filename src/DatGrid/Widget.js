@@ -17,7 +17,7 @@ var DatGrid = DatGrid || {};
         
         this.layout = null;
         
-        this.DomElement = $("<li class='dat-grid-widget-body static' />");
+        this.DomElement = $("<li class='dat-grid-widget-body ' />");
         
         this.DomElement.data("dat-grid-widget",this);
         

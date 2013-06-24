@@ -37,6 +37,7 @@ var DatGrid = DatGrid || {};
             widget = new DatGrid.Widget(widget);
         }
 
+
         
         this.gridster.data('gridster').add_widget( widget.getElement(),widget.width,widget.height,widget.x,widget.y );
         
