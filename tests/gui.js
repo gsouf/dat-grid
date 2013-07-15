@@ -76,6 +76,8 @@ $(function(){
             type: "slider",
             iconCls: "batchicon-windows",
             widthLocked: false,
+            heightLocked: false,
+            maxWidth:12
         })
     );
 

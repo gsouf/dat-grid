@@ -146,6 +146,8 @@ var DatGrid = DatGrid || {};
             gridster: {
                 widget_base_dimensions: [this.cellWidth,this.cellHeight],
                 widget_margins: this.cellMargin,
+                max_size_x: 12, // TODO : autosize ?
+                max_size_y: 800,
                 draggable: {
                     items: ".gs_w"
                 }
